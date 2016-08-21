@@ -1,6 +1,7 @@
 package ru.belyaev.four.screen;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 
 import ru.belyaev.four.FourGame;
 import ru.belyaev.four.World;
@@ -14,6 +15,12 @@ public class GameScreen extends BaseScreen {
     private final World mWorld;
     private final WorldRenderer mWorldRenderer;
     private final WorldController mWorldController;
+
+//    private final ClickListener mClickListener = new ClickListener() {
+//        @Override
+//        public void clicked(InputEvent event, float x, float y) {
+//        }
+//    };
 
     public GameScreen(FourGame game) {
         super(game);
@@ -59,5 +66,16 @@ public class GameScreen extends BaseScreen {
     }
 
     private void updateGameOver(float deltaTime) {
+    }
+
+    // =============================================================================================
+    // InputProcessor implementation
+    // =============================================================================================
+
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        mWorldController.click(screenX, mHeight - screenY);
+        return true;
     }
 }
